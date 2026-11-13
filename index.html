@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071018">
+<meta name="description" content="Interactive Beijing air-quality data analysis project by Mahmudul Hasan.">
+<title>Beijing Air Quality Analysis | Mahmudul Hasan</title>
+<link rel="stylesheet" href="styles.css"></head><body>
+
+<div class="nav-shell">
+  <div class="container nav">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 17L9 12l3 3 7-8" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <span>AirScope Beijing</span>
+    </div>
+    <div class="nav-links">
+      <a href="#overview">Overview</a><a href="#workflow">Workflow</a><a href="#demo">Live Demo</a><a href="#methods">Methods</a><a href="#about">About</a>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn mobile-menu" id="mobileMenu" aria-label="Open menu">☰</button>
+      <button class="icon-btn" id="backTop" aria-label="Back to top">↑</button>
+    </div>
+  </div>
+  <div class="container mobile-panel" id="mobilePanel">
+    <a href="#overview">Overview</a><a href="#workflow">Workflow</a><a href="#demo">Live Demo</a><a href="#methods">Methods</a><a href="#about">About</a>
+  </div>
+</div>
+<header class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="kicker"><span class="dot"></span>Environmental Data Analytics</span>
+      <h1>Explore air-quality patterns with a <span class="gradient-text">real CSV, not synthetic data</span></h1>
+      <p>A polished interactive companion to a Python project analysing Beijing air-quality data to examine pollution patterns and environmental trends.</p>
+      <div class="cta"><a class="btn primary" href="#demo">Open CSV Explorer →</a><a class="btn" href="#workflow">View Analysis Flow</a></div>
+    </div>
+    <div class="hero-card">
+      <div class="panel-top"><div class="panel-title">Data Analysis Console</div><div class="status"><i></i>Browser analytics ready</div></div>
+      <div class="stat-grid">
+        <div class="stat"><strong>CSV</strong><span>upload and analyse a real file locally</span></div>
+        <div class="stat"><strong>0</strong><span>synthetic records bundled in the demo</span></div>
+        <div class="stat"><strong>Stats</strong><span>mean, median, min, max and valid count</span></div>
+        <div class="stat"><strong>Trend</strong><span>interactive line visualization</span></div>
+      </div>
+      <div class="mini-flow">
+        <div class="mini-row"><div class="mini-icon">⇧</div><div><b>Upload CSV</b><span>data remains in your browser</span></div></div>
+        <div class="mini-row"><div class="mini-icon">Σ</div><div><b>Summarise</b><span>select numeric columns and compute statistics</span></div></div>
+        <div class="mini-row"><div class="mini-icon">⌁</div><div><b>Visualise</b><span>inspect a trend without server upload</span></div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="section reveal" id="overview"><div class="container">
+  <div class="section-head"><div><div class="eyebrow">Project overview</div><h2>Environmental data analysis in Python</h2><p>The CV states that the project analyses Beijing air-quality data to examine pollution patterns and environmental trends. This live page adds a browser-based explorer without changing that claim.</p></div></div>
+  <div class="grid-3">
+    <div class="card hover"><div class="card-icon">🌫️</div><h3>Pollution patterns</h3><p>Explore numeric pollutant variables and how they vary across observations.</p><div class="tags"><span class="tag">Air Quality</span><span class="tag">Pollution</span><span class="tag">Trends</span></div></div>
+    <div class="card hover"><div class="card-icon">🌡️</div><h3>Environmental context</h3><p>Inspect meteorological or environmental numeric variables when they exist in the uploaded dataset.</p><div class="tags"><span class="tag">Environment</span><span class="tag">Data Analysis</span></div></div>
+    <div class="card hover"><div class="card-icon">📊</div><h3>Visual reporting</h3><p>Summarise distributions and draw a simple trend directly from a real CSV file.</p><div class="tags"><span class="tag">pandas</span><span class="tag">Matplotlib</span><span class="tag">EDA</span></div></div>
+  </div>
+</div></section>
+
+<section class="section reveal" id="workflow"><div class="container">
+  <div class="section-head"><div><div class="eyebrow">Analysis pipeline</div><h2>Clean, inspect, summarise, visualise</h2><p>A straightforward data-analysis workflow suitable for environmental data exploration.</p></div></div>
+  <div class="pipeline">
+    <div class="step"><h3>Load dataset</h3><p>Read the Beijing air-quality CSV and inspect its schema.</p></div>
+    <div class="step"><h3>Clean variables</h3><p>Handle missing entries and validate numeric fields.</p></div>
+    <div class="step"><h3>Analyse patterns</h3><p>Compute descriptive summaries and compare variables.</p></div>
+    <div class="step"><h3>Visualise trends</h3><p>Use clear plots to communicate environmental behaviour.</p></div>
+  </div>
+</div></section>
+
+<section class="section reveal" id="demo"><div class="container">
+  <div class="section-head"><div><div class="eyebrow">Live demo</div><h2>Interactive CSV explorer</h2><p>Upload a real CSV. Nothing is sent to a server, and no fabricated dataset is included.</p></div></div>
+  <div class="demo-shell">
+    <div class="demo-top"><div><h3>Local Data Explorer</h3><span>File processing happens inside your browser</span></div><button class="btn small" id="resetCsv">Reset</button></div>
+    <div class="form-grid">
+      <div class="field"><label for="csvFile">CSV file</label><input id="csvFile" type="file" accept=".csv,text/csv"></div>
+      <div class="field"><label for="csvColumn">Numeric column</label><select id="csvColumn"><option>Upload a CSV first</option></select></div>
+    </div>
+    <div id="csvMetrics" class="metric-grid" style="margin-top:15px">
+      <div class="metric"><b>—</b><span>Valid values</span></div><div class="metric"><b>—</b><span>Mean</span></div><div class="metric"><b>—</b><span>Median</span></div><div class="metric"><b>—</b><span>Range</span></div>
+    </div>
+    <div class="grid-2" style="margin-top:15px">
+      <div class="canvas-wrap"><canvas id="trendCanvas" width="720" height="320"></canvas></div>
+      <div class="card"><h3>Dataset preview</h3><div id="csvPreview" class="table-wrap"><table><thead><tr><th>Status</th></tr></thead><tbody><tr><td>Upload a CSV to preview the first rows.</td></tr></tbody></table></div></div>
+    </div>
+    <div class="notice">The trend chart uses the selected numeric column in row order. If your dataset has a date/time field, the original Python analysis should be used for precise time-aware modelling.</div>
+  </div>
+</div></section>
+
+<section class="section reveal" id="methods"><div class="container split">
+  <div class="card"><div class="eyebrow">Technical stack</div><h2>Analysis tools</h2><div class="tech-list">
+    <div class="tech"><b>Python</b><span>analysis environment</span></div>
+    <div class="tech"><b>pandas</b><span>tabular data processing</span></div>
+    <div class="tech"><b>NumPy</b><span>numeric operations</span></div>
+    <div class="tech"><b>Matplotlib</b><span>visual exploration</span></div>
+    <div class="tech"><b>Descriptive statistics</b><span>summary and distribution checks</span></div>
+    <div class="tech"><b>Browser CSV demo</b><span>interactive sharing layer</span></div>
+  </div></div>
+  <div class="card"><div class="eyebrow">Evidence policy</div><h2>No synthetic pollution values</h2>
+    <p>This GitHub Pages package contains no invented Beijing measurements. The interactive demo only analyses data selected by the visitor.</p>
+    <div class="notice">For a publication-style demo later, add the exact original dataset citation and verified figures from the Python analysis.</div>
+  </div>
+</div></section>
+
+<section class="section reveal" id="about"><div class="container">
+  <div class="section-head"><div><div class="eyebrow">About</div><h2>Shareable without losing research discipline</h2><p>The page provides a professional visual layer for CV and LinkedIn sharing while keeping the underlying analysis claims conservative.</p></div></div>
+  <div class="accordion">
+    <div class="acc-item open"><button class="acc-btn">Does the uploaded CSV leave my browser?<span>＋</span></button><div class="acc-content">No. The demo reads the file locally with browser JavaScript. There is no server upload.</div></div>
+    <div class="acc-item"><button class="acc-btn">Does this replace the original Python analysis?<span>＋</span></button><div class="acc-content">No. It is a lightweight presentation layer. The original notebook/code should remain the source for reproducible analysis and verified figures.</div></div>
+  </div>
+</div></section>
+</main>
+
+<footer>
+  <div class="container footer-grid">
+    <div><b>Beijing Air Quality Data Analysis</b><br><span>Mahmudul Hasan · Computer Science & Engineering</span></div>
+    <div class="footer-links"><a href="#overview">Overview</a><a href="#demo">Demo</a><a href="#methods">Methods</a></div>
+  </div>
+</footer>
+<div id="toast" class="toast"></div>
+<script src="script.js"></script></body></html>
